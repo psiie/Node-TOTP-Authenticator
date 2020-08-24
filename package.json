@@ -106,7 +106,7 @@
     "babel-preset-env": "^1.6.1",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.10.0"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "babel": {
     "presets": [
