@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // process.noDeprecation = true; // see https://github.com/webpack/loader-utils/issues/56
 
@@ -20,19 +22,21 @@ module.exports = options => ({
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      sourcemap: false,
-      parallel: true,
-      toplevel: true,
-      uglifyOptions: {
-        compress: {
-          ecma: 6,
-          toplevel: true,
-          passes: 2,
-        },
-      },
-    }),
+    new MinifyPlugin({}, {}),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: true,
+    //   sourcemap: false,
+    //   parallel: true,
+    //   toplevel: true,
+    //   uglifyOptions: {
+    //     compress: {
+    //       ecma: 7,
+    //       toplevel: true,
+    //       passes: 2,
+    //     },
+    //   },
+    // }),
+    // new webpack.IgnorePlugin(/readable-stream/),
     // new BundleAnalyzerPlugin({ 'process.env.NODE_ENV': '"production"' }),
   ],
   resolve: {
@@ -46,5 +50,5 @@ module.exports = options => ({
     net: 'empty',
     tls: 'empty',
   },
-  target: 'node',
+  target: 'web',
 });
